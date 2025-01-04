@@ -3,6 +3,7 @@ import org.skypro.skyshop.product.Product;
 
 public class Basket {
     private static int count = 0;
+    private static int specialCount = 0;
     Product[] myBasket = new Product[5];
 
     public void addProduct(Product p){
@@ -29,16 +30,19 @@ public class Basket {
         }else{
             System.out.println("My basket");
             for(Product prod : myBasket){
-                System.out.println(prod.getName() +": " + prod.getPrice());
+                System.out.println(prod);
+                if(prod.isSpesial()) {specialCount++;}
             }
             System.out.println("Total: " + getSum());
+            System.out.println("Special products: " + specialCount);
         }
     }
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
         for(Product product : myBasket){
-            if(product.getName() == name){
+            if(product.getName().equals(name)) {
                 enabled = true;
+                break;
             }
         }
         return enabled;
