@@ -2,10 +2,11 @@ package org.skypro.skyshop.product;
 
 public class FixPriceProduct extends Product {
     static int FIXED_PRICE = 109;
-    public FixPriceProduct(String n){
-        super(n);
-    }
+    private static Article art;
 
+    public FixPriceProduct(String n,Article a){
+        super(n,a);
+    }
     @Override
     public int getPrice() {
         return FIXED_PRICE;
@@ -16,6 +17,7 @@ public class FixPriceProduct extends Product {
         return true;
     }
 
+
     public String toString() {
         String output = "";
         output+=this.getName()+": Fixed price - ";
@@ -23,4 +25,8 @@ public class FixPriceProduct extends Product {
         return output;
     }
 
+    @Override
+    public String getType(){
+        return "is special";
+    }
 }

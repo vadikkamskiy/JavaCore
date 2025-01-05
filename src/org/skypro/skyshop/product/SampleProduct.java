@@ -2,9 +2,9 @@ package org.skypro.skyshop.product;
 
 public class SampleProduct extends Product {
     private static String name;
-    private static int price;
-    public SampleProduct(String n ,int p){
-        super(n);
+    private int price;
+    public SampleProduct(String n ,int p,Article a){
+        super(n,a);
         price = p;
     }
     @Override
@@ -22,6 +22,11 @@ public class SampleProduct extends Product {
         output+=this.getName()+": ";
         output+=this.getPrice();
         return output;
+    }
+
+    @Override
+    public String getType(){
+        return "is regular";
     }
 
 }

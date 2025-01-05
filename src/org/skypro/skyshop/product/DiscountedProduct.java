@@ -3,8 +3,8 @@ package org.skypro.skyshop.product;
 public class DiscountedProduct extends Product {
     private int price;
     public int discount;
-    public DiscountedProduct(String n, int p, int d){
-        super(n);
+    public DiscountedProduct(String n, int p, int d,Article a){
+        super(n,a);
         price = p;
         discount = d;
     }
@@ -24,5 +24,10 @@ public class DiscountedProduct extends Product {
         output+=this.getPrice();
         output+="(discount " + this.discount+"%)";
         return output;
+    }
+
+    @Override
+    public String getType(){
+        return "is special";
     }
 }
