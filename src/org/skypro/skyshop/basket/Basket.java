@@ -1,12 +1,13 @@
 package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.Searchable;
 
 public class Basket {
     private static int count = 0;
     private static int specialCount = 0;
-    Product[] myBasket = new Product[5];
+    Searchable[] myBasket = new Product[5];
 
-    public void addProduct(Product p){
+    public void addProduct(Searchable p){
         if(count < 5){
             myBasket[count] = p;
             count++;
@@ -16,9 +17,11 @@ public class Basket {
             System.out.println("Basket is full");
         }
     }
+
     public int getSum(){
         int sum = 0;
-        for(Product product : myBasket){
+        for(Searchable product : myBasket){
+            if(product.getType().equals("PRODUCT"))
             sum += product.getPrice();
         }
         return sum;
@@ -29,7 +32,7 @@ public class Basket {
             System.out.println("Basket is empty");
         }else{
             System.out.println("My basket");
-            for(Product prod : myBasket){
+            for(Searchable prod : myBasket){
                 System.out.println(prod);
                 if(prod.isSpesial()) {specialCount++;}
             }
@@ -39,11 +42,11 @@ public class Basket {
     }
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
-        for(Product product : myBasket){
-            if(product.getName().equals(name)) {
+        for(Searchable product : myBasket){
+            if (product.getSearchTerm().contains(name)) {
                 enabled = true;
-                break;
             }
+            break;
         }
         return enabled;
     }

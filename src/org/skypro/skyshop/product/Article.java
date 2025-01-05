@@ -8,7 +8,7 @@ package org.skypro.skyshop.product;
         nameOfArticle = n;
         textOfArticle = t;
     }
-    public String getInfo(){
+    public String toString(){
         return nameOfArticle + " - " + textOfArticle;
     }
 
@@ -26,4 +26,5 @@ package org.skypro.skyshop.product;
      public String getStringRepresentation() {
          return Searchable.super.getStringRepresentation();
      }
+
  }

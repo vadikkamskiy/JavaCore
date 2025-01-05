@@ -7,4 +7,12 @@ public interface Searchable {
     default String getStringRepresentation(){
         return getType() +'\n' + getSearchTerm();
     }
+
+    default int getPrice(){
+        return 0;
+    }
+
+    default boolean isSpesial(){
+        return false;
+    }
 }

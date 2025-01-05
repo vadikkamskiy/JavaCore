@@ -2,8 +2,8 @@ package org.skypro.skyshop.product;
 
 public class SampleProduct extends Product {
     private final int price;
-    public SampleProduct(String n ,int p,Article a){
-        super(n,a);
+    public SampleProduct(String n ,int p){
+        super(n);
         price = p;
     }
     @Override

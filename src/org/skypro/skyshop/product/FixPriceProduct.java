@@ -3,8 +3,8 @@ package org.skypro.skyshop.product;
 public class FixPriceProduct extends Product {
     static int FIXED_PRICE = 109;
 
-    public FixPriceProduct(String n,Article a){
-        super(n,a);
+    public FixPriceProduct(String n){
+        super(n);
     }
     @Override
     public int getPrice() {

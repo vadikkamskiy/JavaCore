@@ -2,10 +2,8 @@ package org.skypro.skyshop.product;
 
 public abstract class Product implements Searchable{
     private final String name;
-    Article art;
-    public Product(String n ,Article a){
+    public Product(String n ){
         name = n;
-        art = a;
     }
 
     public String getName(){
@@ -15,7 +13,11 @@ public abstract class Product implements Searchable{
     public abstract boolean isSpesial();
     @Override
     public String getSearchTerm() {
-        return name +' '+ art.getInfo();
+        return name ;
+    }
+    @Override
+    public String getType(){
+        return "PRODUCT";
     }
 
 }
