@@ -1,10 +1,10 @@
 package org.skypro.skyshop.product;
 
 public interface Searchable {
-    public String getSearchTerm();
+    String getSearchTerm();
 
-    public String getType();
-    default public String getStringRepresentation(){
+    String getType();
+    default String getStringRepresentation(){
         return getType() +'\n' + getSearchTerm();
     }
 }

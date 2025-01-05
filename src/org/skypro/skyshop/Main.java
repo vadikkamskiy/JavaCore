@@ -32,13 +32,14 @@ public class Main {
 
         myBasket.clear();
         myBasket.getList();
-        SearchEngine se = new SearchEngine(shopList.length);
+        SearchEngine se = new SearchEngine();
         se.generateList(shopList);
         se.search("nice");
         se.showSearching();
         se.search("wine");
         se.showSearching();
         se.search("good");
+        se.addProdct(shopList[3]);
         se.showSearching();
     }
 }

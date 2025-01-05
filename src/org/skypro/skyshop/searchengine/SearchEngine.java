@@ -4,14 +4,11 @@ import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.Searchable;
 
 public class SearchEngine {
-    private int weight;
 
     private Searchable[] findProduct = new Searchable[5];
-    public SearchEngine(int w){
-        weight = w;
-    }
-    Searchable[] searchables = new Searchable[9];
+    Searchable[] searchables;
     public void generateList(Product[] p){
+        searchables = new Searchable[p.length];
         System.arraycopy(p,0,searchables,0, p.length);
     }
     public void search(String j){
@@ -28,5 +25,13 @@ public class SearchEngine {
             System.out.println(o);
         }
         findProduct = new Searchable[5];
+    }
+    public void addProdct(Product t){
+        for(int i = 0;i< findProduct.length;i++){
+            if(findProduct[i] == null){
+                findProduct[i] = t;
+                break;
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 package org.skypro.skyshop.product;
 
 public abstract class Product implements Searchable{
-    private String name;
+    private final String name;
     Article art;
     public Product(String n ,Article a){
         name = n;
