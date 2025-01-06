@@ -20,6 +20,7 @@ public class DiscountedProduct extends Product {
 
     public String toString() {
         String output = "";
+        output+=this.getType()+" ";
         output+=this.getName()+": ";
         output+=this.getPrice();
         output+="(discount " + this.discount+"%)";

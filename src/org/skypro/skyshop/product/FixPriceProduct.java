@@ -18,6 +18,7 @@ public class FixPriceProduct extends Product {
 
     public String toString() {
         String output = "";
+        output+=this.getType()+" ";
         output+=this.getName()+": Fixed price - ";
         output+=this.getPrice();
         return output;

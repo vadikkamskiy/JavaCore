@@ -9,7 +9,7 @@ package org.skypro.skyshop.product;
         textOfArticle = t;
     }
     public String toString(){
-        return nameOfArticle + " - " + textOfArticle;
+        return getType() +" "+ nameOfArticle + " - " + textOfArticle;
     }
 
      @Override

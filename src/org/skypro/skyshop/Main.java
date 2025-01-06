@@ -4,6 +4,8 @@ import org.skypro.skyshop.basket.Basket;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
+import java.util.Arrays;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -42,17 +44,18 @@ public class Main {
 
         myBasket.clear();
         myBasket.getList();
-        SearchEngine se = new SearchEngine();
+
         Searchable[] searchables = new Searchable[shopList.length + artList.length];
         for (int i = 0; i < shopList.length; i++) {
             searchables[i * 2] = shopList[i];
             searchables[i * 2 + 1] = artList[i];
         }
-        se.generateList(searchables);
-        se.search("vine");
-        se.search("beer");
-        se.search("wine");
-        se.search("whiskey");
-
+        SearchEngine se = new SearchEngine(searchables);
+        System.out.println(Arrays.toString(se.search("vine")));
+        System.out.println(Arrays.toString(se.search("beer")));
+        System.out.println(Arrays.toString(se.search("wine")));
+        Product l = new FixPriceProduct("whiskeyyyyy");
+        se.add(l);
+        System.out.println(Arrays.toString(se.search("whiskey")));
     }
 }

@@ -17,6 +17,7 @@ public class SampleProduct extends Product {
 
     public String toString() {
         String output = "";
+        output+=this.getType()+" ";
         output+=this.getName()+": ";
         output+=this.getPrice();
         return output;

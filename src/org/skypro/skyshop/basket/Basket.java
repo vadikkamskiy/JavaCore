@@ -1,6 +1,5 @@
 package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.Searchable;
 
 public class Basket {
     private static int count = 0;
@@ -20,7 +19,7 @@ public class Basket {
 
     public int getSum(){
         int sum = 0;
-        for(Searchable product : myBasket){
+        for(Product product : myBasket){
             sum += product.getPrice();
         }
         return sum;
@@ -41,7 +40,7 @@ public class Basket {
     }
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
-        for(Searchable product : myBasket){
+        for(Product product : myBasket){
             if (product.getSearchTerm().contains(name)) {
                 enabled = true;
             }
