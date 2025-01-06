@@ -12,7 +12,7 @@ public class SearchEngine {
     public void search(String j){
         for(Searchable l : searchables){
             if (l.getSearchTerm().contains(j)){
-                System.out.println(l);
+                System.out.println(l.getStringRepresentation()+"\n \n");
             }
         }
     }

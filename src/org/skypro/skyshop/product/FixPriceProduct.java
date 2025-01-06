@@ -11,7 +11,6 @@ public class FixPriceProduct extends Product {
         return FIXED_PRICE;
     }
 
-    @Override
     public boolean isSpesial() {
         return true;
     }
@@ -22,10 +21,5 @@ public class FixPriceProduct extends Product {
         output+=this.getName()+": Fixed price - ";
         output+=this.getPrice();
         return output;
-    }
-
-    @Override
-    public String getType(){
-        return "is special";
     }
 }

@@ -13,7 +13,7 @@ public abstract class Product implements Searchable{
     public abstract boolean isSpesial();
     @Override
     public String getSearchTerm() {
-        return name ;
+        return name + ": " + getPrice();
     }
     @Override
     public String getType(){

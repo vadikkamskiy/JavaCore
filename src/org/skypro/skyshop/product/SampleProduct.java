@@ -11,7 +11,6 @@ public class SampleProduct extends Product {
         return price;
     }
 
-    @Override
     public boolean isSpesial() {
         return false;
     }
@@ -22,10 +21,4 @@ public class SampleProduct extends Product {
         output+=this.getPrice();
         return output;
     }
-
-    @Override
-    public String getType(){
-        return "is regular";
-    }
-
 }

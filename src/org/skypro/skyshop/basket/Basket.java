@@ -5,9 +5,9 @@ import org.skypro.skyshop.product.Searchable;
 public class Basket {
     private static int count = 0;
     private static int specialCount = 0;
-    Searchable[] myBasket = new Product[5];
+    Product[] myBasket = new Product[5];
 
-    public void addProduct(Searchable p){
+    public void addProduct(Product p){
         if(count < 5){
             myBasket[count] = p;
             count++;
@@ -21,7 +21,6 @@ public class Basket {
     public int getSum(){
         int sum = 0;
         for(Searchable product : myBasket){
-            if(product.getType().equals("PRODUCT"))
             sum += product.getPrice();
         }
         return sum;
@@ -32,7 +31,7 @@ public class Basket {
             System.out.println("Basket is empty");
         }else{
             System.out.println("My basket");
-            for(Searchable prod : myBasket){
+            for(Product prod : myBasket){
                 System.out.println(prod);
                 if(prod.isSpesial()) {specialCount++;}
             }

@@ -25,9 +25,4 @@ public class DiscountedProduct extends Product {
         output+="(discount " + this.discount+"%)";
         return output;
     }
-
-    @Override
-    public String getType(){
-        return "is special";
-    }
 }

@@ -12,7 +12,4 @@ public interface Searchable {
         return 0;
     }
 
-    default boolean isSpesial(){
-        return false;
-    }
 }

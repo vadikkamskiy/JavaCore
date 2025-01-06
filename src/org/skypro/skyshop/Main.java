@@ -9,18 +9,26 @@ import org.skypro.skyshop.searchengine.SearchEngine;
 public class Main {
     public static void main(String[] args) {
         Basket myBasket = new Basket();
-        Searchable[] shopList = new Searchable[11];
+        Product[] shopList = new Product[9];
+        Article[] artList = new Article[9];
         shopList[0] = new SampleProduct("beer",69);
+        artList[0] = new Article("Bad beer" , "Very good choise");
         shopList[1] = new FixPriceProduct("whiskey");
+        artList[1] = new Article("Whiskey Jacky Danielson","beautiful with cola");
         shopList[2] = new DiscountedProduct("gin", 450, 11);
+        artList[2] = new Article("Gin Hendroy's","very strong");
         shopList[3] = new SampleProduct("wine", 670);
+        artList[3] = new Article("Wine Divine","vine, we miss");
         shopList[4] = new DiscountedProduct("beer", 120, 7);
+        artList[4] = new Article("Beer hellniken", "damn good");
         shopList[5] = new SampleProduct("wine", 940);
+        artList[5] = new Article("Tuchi","Cabernet");
         shopList[6] = new FixPriceProduct("vodka");
-        shopList[7] = new SampleProduct("wine", 1500)   ;
+        artList[6] = new Article("Vodka absoluse", "Luse everything");
+        shopList[7] = new SampleProduct("wine", 1500);
+        artList[7] = new Article("Wine mother-in-law's cellar","taste of childhood");
         shopList[8] = new DiscountedProduct("vodka", 900, 5);
-        shopList[9] = new Article("my think", "that's bullshit");
-        shopList[10] = new Article("I'm serious", "that's holy crap");
+        artList[8] = new Article("Vodka nemiron", "turn it up");
         System.out.println("Shop \n");
         for (Searchable c : shopList){
             System.out.println(c);
@@ -35,8 +43,16 @@ public class Main {
         myBasket.clear();
         myBasket.getList();
         SearchEngine se = new SearchEngine();
-        se.generateList(shopList);
+        Searchable[] searchables = new Searchable[shopList.length + artList.length];
+        for (int i = 0; i < shopList.length; i++) {
+            searchables[i * 2] = shopList[i];
+            searchables[i * 2 + 1] = artList[i];
+        }
+        se.generateList(searchables);
+        se.search("vine");
+        se.search("beer");
+        se.search("wine");
+        se.search("whiskey");
 
-        se.search("th");
     }
 }
