@@ -16,6 +16,7 @@ public class Basket {
             System.out.println("Basket is full");
         }
     }
+
     public int getSum(){
         int sum = 0;
         for(Product product : myBasket){
@@ -40,10 +41,10 @@ public class Basket {
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
         for(Product product : myBasket){
-            if(product.getName().equals(name)) {
+            if (product.getSearchTerm().contains(name)) {
                 enabled = true;
-                break;
             }
+            break;
         }
         return enabled;
     }

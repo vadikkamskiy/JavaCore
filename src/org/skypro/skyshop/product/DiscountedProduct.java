@@ -1,7 +1,7 @@
 package org.skypro.skyshop.product;
 
 public class DiscountedProduct extends Product {
-    private int price;
+    private final int price;
     public int discount;
     public DiscountedProduct(String n, int p, int d){
         super(n);
@@ -20,6 +20,7 @@ public class DiscountedProduct extends Product {
 
     public String toString() {
         String output = "";
+        output+=this.getType()+" ";
         output+=this.getName()+": ";
         output+=this.getPrice();
         output+="(discount " + this.discount+"%)";
