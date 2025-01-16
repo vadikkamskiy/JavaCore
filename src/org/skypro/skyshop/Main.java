@@ -9,11 +9,16 @@ import java.util.Arrays;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Basket myBasket = new Basket();
         Product[] shopList = new Product[9];
         Article[] artList = new Article[9];
-        shopList[0] = new SampleProduct("beer",69);
+        try {
+            shopList[0] = new SampleProduct("beer",0);
+        } catch (Exception e) {
+            shopList[0] = new SampleProduct("beer",69);
+
+        }
         artList[0] = new Article("Bad beer" , "Very good choise");
         shopList[1] = new FixPriceProduct("whiskey");
         artList[1] = new Article("Whiskey Jacky Danielson","beautiful with cola");
@@ -21,7 +26,7 @@ public class Main {
         artList[2] = new Article("Gin Hendroy's","very strong");
         shopList[3] = new SampleProduct("wine", 670);
         artList[3] = new Article("Wine Divine","vine, we miss");
-        shopList[4] = new DiscountedProduct("beer", 120, 7);
+        shopList[4] = new DiscountedProduct("beer", 790, 12);
         artList[4] = new Article("Beer hellniken", "damn good");
         shopList[5] = new SampleProduct("wine", 940);
         artList[5] = new Article("Tuchi","Cabernet");
@@ -51,11 +56,8 @@ public class Main {
             searchables[i * 2 + 1] = artList[i];
         }
         SearchEngine se = new SearchEngine(searchables);
-        System.out.println(Arrays.toString(se.search("vine")));
-        System.out.println(Arrays.toString(se.search("beer")));
-        System.out.println(Arrays.toString(se.search("wine")));
+        System.out.println(se.search("l"));
         Product l = new FixPriceProduct("whiskeyyyyy");
         se.add(l);
-        System.out.println(Arrays.toString(se.search("whiskey")));
-    }
+        }
 }
