@@ -1,6 +1,7 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.Basket;
+import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.searchengine.SearchEngine;
 
@@ -14,9 +15,10 @@ public class Main {
         Product[] shopList = new Product[9];
         Article[] artList = new Article[9];
         try {
-            shopList[0] = new SampleProduct("beer",0);
+            shopList[0] = new SampleProduct("beerr",0);
         } catch (Exception e) {
-            shopList[0] = new SampleProduct("beer",69);
+            System.out.println(e.getMessage());
+            shopList[0] = new SampleProduct("beerr",69);
 
         }
         artList[0] = new Article("Bad beer" , "Very good choise");
@@ -56,7 +58,12 @@ public class Main {
             searchables[i * 2 + 1] = artList[i];
         }
         SearchEngine se = new SearchEngine(searchables);
-        System.out.println(se.search("l"));
+        System.out.println(se.search("vine"));
+        try {
+            System.out.println(se.search("moonshine"));
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
         Product l = new FixPriceProduct("whiskeyyyyy");
         se.add(l);
         }
