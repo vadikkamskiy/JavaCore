@@ -1,9 +1,10 @@
 package org.skypro.skyshop.product;
 
 
+
 public abstract class Product implements Searchable{
     private final String name;
-    public Product(String n){
+    public Product(String n) throws IllegalAccessException{
         name = n;
         checkNPE(n);
     }
@@ -22,9 +23,9 @@ public abstract class Product implements Searchable{
         return "PRODUCT";
     }
 
-    private void checkNPE(String n) throws RuntimeException{
+    private void checkNPE(String n) throws IllegalAccessException{
         if(n==null || n.isBlank()){
-            throw new NullPointerException("empty name variable");
+            throw new IllegalAccessException("empty name variable");
         }
     }
 }
