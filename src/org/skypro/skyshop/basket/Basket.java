@@ -1,4 +1,5 @@
 package org.skypro.skyshop.basket;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,10 +54,12 @@ public class Basket {
 
     public List<Product> deleteProducts(String name){
         List<Product> deleted = new LinkedList<>();
-        for (int i = 0; i<myBasket.size();i++){
-            if(myBasket.get(i).getName().equals(name)){
-                deleted.add(myBasket.get(i));
-                myBasket.remove(i);
+        Iterator<Product> deletedIterator = myBasket.iterator();
+        while (deletedIterator.hasNext()){
+            Product nextProduct = deletedIterator.next();
+            if(nextProduct.getName().equals(name)){
+                deletedIterator.remove();
+                deleted.add(nextProduct);
             }
         }
         if(deleted.isEmpty()){

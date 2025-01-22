@@ -53,7 +53,7 @@ public class Main {
         System.out.println(myBasket.deleteProducts("moonshine"));
         myBasket.getList();
 
-        System.out.println(myBasket.deleteProducts("wine"));
+        System.out.println(myBasket.deleteProducts("gin"));
         myBasket.getList();
 
         myBasket.clear();
