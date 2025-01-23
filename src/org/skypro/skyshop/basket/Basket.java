@@ -1,20 +1,18 @@
 package org.skypro.skyshop.basket;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.skypro.skyshop.product.Product;
 
 public class Basket {
     private static int count = 0;
     private static int specialCount = 0;
-    Product[] myBasket = new Product[5];
+    List<Product> myBasket = new LinkedList<>();
 
     public void addProduct(Product p){
-        if(count < 5){
-            myBasket[count] = p;
-            count++;
-        }else if (count == 0) {
-            System.out.println("Basket is empty");
-        } else {
-            System.out.println("Basket is full");
-        }
+        myBasket.add(p);
+        count++;
     }
 
     public int getSum(){
@@ -24,6 +22,7 @@ public class Basket {
         }
         return sum;
     }
+
 
     public void getList(){
         if(count == 0){
@@ -49,7 +48,23 @@ public class Basket {
         return enabled;
     }
     public void clear(){
-        myBasket = new Product[5];
+        myBasket.clear();
         count = 0;
+    }
+
+    public List<Product> deleteProducts(String name){
+        List<Product> deleted = new LinkedList<>();
+        Iterator<Product> deletedIterator = myBasket.iterator();
+        while (deletedIterator.hasNext()){
+            Product nextProduct = deletedIterator.next();
+            if(nextProduct.getName().equals(name)){
+                deletedIterator.remove();
+                deleted.add(nextProduct);
+            }
+        }
+        if(deleted.isEmpty()){
+            System.out.println("Basket not contains " + name);
+        }
+        return deleted;
     }
 }
