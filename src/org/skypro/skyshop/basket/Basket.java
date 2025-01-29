@@ -36,6 +36,7 @@ public class Basket {
             }
 
             System.out.println("Special product : "+ specialCount);
+            System.out.println("Sum of basket : " + sumOfBasket);
         }
     }
     public boolean inBasketEnabled(String name){
@@ -48,5 +49,6 @@ public class Basket {
     public void clear(){
         myBasket.clear();
         count = 0;
+        sumOfBasket = 0;
     }
 }

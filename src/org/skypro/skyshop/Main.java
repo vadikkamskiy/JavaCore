@@ -59,7 +59,7 @@ public class Main {
         }
         SearchEngine se = new SearchEngine(searchables);
 
-        System.out.println(se.search("wine"));
+        System.out.println(se.search("beer"));
         try {
             System.out.println(se.search("moonshine"));
         } catch (BestResultNotFound e) {
