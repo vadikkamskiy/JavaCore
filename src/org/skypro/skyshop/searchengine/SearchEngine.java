@@ -1,7 +1,9 @@
 package org.skypro.skyshop.searchengine;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 
@@ -13,17 +15,14 @@ public class SearchEngine {
         searchables = p;
     }
 
-    public List<Searchable> search(String j) throws BestResultNotFound{
-        List<Searchable> r = new LinkedList<>();
-        for (Searchable searchable : searchables) {
-            if(searchable.toString().contains(j)){
-                r.add(searchable);
-            }
+    public Map<String,List<Searchable>> search(String j) throws BestResultNotFound{
+        Map<String,List<Searchable>> output = new TreeMap<>();
+       for (Searchable s : searchables) {
+        if (s.getSearchTerm().contains(j)) {
+            output.computeIfAbsent(s.getName(), k-> new ArrayList<>()).add(s);
         }
-        if (r.isEmpty()) {
-            throw new BestResultNotFound(j + " not found");
-        }
-        return r;
+       }
+       return output;
     }
     public void add(Searchable r){
         searchables.add(r);

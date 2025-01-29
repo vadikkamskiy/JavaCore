@@ -40,4 +40,8 @@ public class DiscountedProduct extends Product {
             throw new IllegalAccessException("wrong input discount: " + p+ "% ??! thats unreal!!");
         }
     }
+    @Override
+    public String name() {
+        return this.getName();
+    }
 }

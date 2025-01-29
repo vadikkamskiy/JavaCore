@@ -63,7 +63,6 @@ public class Main {
         searchables.addAll(Arrays.asList(shopList));
         searchables.addAll(Arrays.asList(artList));
         SearchEngine se = new SearchEngine(searchables);
-        System.out.println(se.search("discount"));
         try {
             System.out.println(se.search("moonshine"));
         } catch (BestResultNotFound e) {
