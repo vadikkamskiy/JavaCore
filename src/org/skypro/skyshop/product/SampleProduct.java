@@ -32,4 +32,8 @@ public class SampleProduct extends Product {
             throw new IllegalAccessException("The price cannot be like this " + u + " that should be more 0");
         }
     }
+    @Override
+    public String name() {
+        return this.getName();
+    }
 }

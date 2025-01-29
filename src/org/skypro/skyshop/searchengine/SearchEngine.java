@@ -1,5 +1,10 @@
 package org.skypro.skyshop.searchengine;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.Searchable;
 
@@ -10,20 +15,14 @@ public class SearchEngine {
         System.arraycopy(p,0,searchables,0, p.length);
     }
 
-    public Searchable search(String j) throws BestResultNotFound{
-        int count = 1;
-        Searchable r = null;
-        for(int i= 0;i<searchables.length;i++){
-            String[] u =  searchables[i].getSearchTerm().split(j);
-            if(u.length>count ){
-                count = u.length;
-                r=searchables[i];
-            }
+    public Map<String,List<Searchable>> search(String j) throws BestResultNotFound{
+        Map<String,List<Searchable>> output = new TreeMap<>();
+       for (Searchable s : searchables) {
+        if (s.getSearchTerm().contains(j)) {
+            output.computeIfAbsent(s.getName(), k-> new ArrayList<>()).add(s);
         }
-        if (r==null) {
-            throw new BestResultNotFound(j + " not found");
-        }
-        return r;
+       }
+       return output;
     }
     public void add(Searchable r){
         Searchable[] newArr = new Searchable[searchables.length + 1];

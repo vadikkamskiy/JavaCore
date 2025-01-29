@@ -1,28 +1,28 @@
 package org.skypro.skyshop.basket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.skypro.skyshop.product.Product;
 
 public class Basket {
+    private int sumOfBasket = 0;
     private static int count = 0;
     private static int specialCount = 0;
-    Product[] myBasket = new Product[5];
+    Map<String,List<Product>> myBasket = new TreeMap<>();
 
     public void addProduct(Product p){
-        if(count < 5){
-            myBasket[count] = p;
-            count++;
-        }else if (count == 0) {
-            System.out.println("Basket is empty");
-        } else {
-            System.out.println("Basket is full");
+        myBasket.computeIfAbsent(p.getName(), k-> new ArrayList<>()).add(p);
+        sumOfBasket += p.getPrice();
+        if(p.isSpesial()){
+            specialCount++;
         }
+        count++;
     }
 
     public int getSum(){
-        int sum = 0;
-        for(Product product : myBasket){
-            sum += product.getPrice();
-        }
-        return sum;
+        return sumOfBasket;
     }
 
     public void getList(){
@@ -30,26 +30,23 @@ public class Basket {
             System.out.println("Basket is empty");
         }else{
             System.out.println("My basket");
-            for(Product prod : myBasket){
-                System.out.println(prod);
-                if(prod.isSpesial()) {specialCount++;}
+            
+            for(Map.Entry<String,List<Product>> gl : myBasket.entrySet()){
+                System.out.println(gl);
             }
-            System.out.println("Total: " + getSum());
-            System.out.println("Special products: " + specialCount);
+
+            System.out.println("Special product : "+ specialCount);
         }
     }
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
-        for(Product product : myBasket){
-            if (product.getSearchTerm().contains(name)) {
-                enabled = true;
-            }
-            break;
+        if(myBasket.containsKey(name)){
+            enabled = true;
         }
         return enabled;
     }
     public void clear(){
-        myBasket = new Product[5];
+        myBasket.clear();
         count = 0;
     }
 }

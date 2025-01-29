@@ -58,7 +58,8 @@ public class Main {
             searchables[i * 2 + 1] = artList[i];
         }
         SearchEngine se = new SearchEngine(searchables);
-        System.out.println(se.search("vine"));
+
+        System.out.println(se.search("wine"));
         try {
             System.out.println(se.search("moonshine"));
         } catch (BestResultNotFound e) {
