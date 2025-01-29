@@ -1,31 +1,26 @@
 package org.skypro.skyshop.basket;
-
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 
 import org.skypro.skyshop.product.Product;
 
 public class Basket {
-    private int sumOfBasket = 0;
     private static int count = 0;
     private static int specialCount = 0;
-
-    Map<String,List<Product>> myBasket = new TreeMap<>();
+    List<Product> myBasket = new LinkedList<>();
 
     public void addProduct(Product p){
-        myBasket.computeIfAbsent(p.getName(), k-> new ArrayList<>()).add(p);
-        sumOfBasket += p.getPrice();
-        if(p.isSpesial()){
-            specialCount++;
-        }
+        myBasket.add(p);
         count++;
     }
 
     public int getSum(){
-        return sumOfBasket;
+        int sum = 0;
+        for(Product product : myBasket){
+            sum += product.getPrice();
+        }
+        return sum;
     }
 
 
@@ -34,26 +29,27 @@ public class Basket {
             System.out.println("Basket is empty");
         }else{
             System.out.println("My basket");
-            
-            for(Map.Entry<String,List<Product>> gl : myBasket.entrySet()){
-                System.out.println(gl);
+            for(Product prod : myBasket){
+                System.out.println(prod);
+                if(prod.isSpesial()) {specialCount++;}
             }
-
-            System.out.println("Special product : "+ specialCount);
-            System.out.println("Sum of basket : " + sumOfBasket);
+            System.out.println("Total: " + getSum());
+            System.out.println("Special products: " + specialCount);
         }
     }
     public boolean inBasketEnabled(String name){
         boolean enabled = false;
-        if(myBasket.containsKey(name)){
-            enabled = true;
+        for(Product product : myBasket){
+            if (product.getSearchTerm().contains(name)) {
+                enabled = true;
+            }
+            break;
         }
         return enabled;
     }
     public void clear(){
         myBasket.clear();
         count = 0;
-        sumOfBasket = 0;
     }
 
     public List<Product> deleteProducts(String name){

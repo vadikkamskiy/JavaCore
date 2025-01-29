@@ -26,8 +26,5 @@ package org.skypro.skyshop.product;
      public String getStringRepresentation() {
          return Searchable.super.getStringRepresentation();
      }
-    @Override
-    public String getName() {
-        return nameOfArticle;
-    }
+
  }
