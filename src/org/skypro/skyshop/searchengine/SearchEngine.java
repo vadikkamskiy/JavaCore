@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.skypro.skyshop.exceptions.BestResultNotFound;
+
 import org.skypro.skyshop.product.Searchable;
 
 public class SearchEngine {
-    Searchable[] searchables;
-    public SearchEngine(Searchable[] p){
-        searchables = new Searchable[p.length];
-        System.arraycopy(p,0,searchables,0, p.length);
+    List<Searchable> searchables;
+    public SearchEngine(List<Searchable> p){
+        searchables = p;
     }
 
     public Map<String,List<Searchable>> search(String j) throws BestResultNotFound{
@@ -25,11 +25,6 @@ public class SearchEngine {
        return output;
     }
     public void add(Searchable r){
-        Searchable[] newArr = new Searchable[searchables.length + 1];
-        for (int i = 0; i < searchables.length; i++) {
-            newArr[i] = searchables[i];
-        }
-        newArr[newArr.length - 1] = r;
-        searchables = newArr;
+        searchables.add(r);
     }
 }

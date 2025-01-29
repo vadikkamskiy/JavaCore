@@ -1,12 +1,13 @@
 package org.skypro.skyshop;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.skypro.skyshop.basket.Basket;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.searchengine.SearchEngine;
-
-import java.util.Arrays;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
 
         }
         artList[0] = new Article("Bad beer" , "Very good choise");
-        shopList[1] = new FixPriceProduct("whiskey");
+        shopList[1] = (new FixPriceProduct("whiskey"));
         artList[1] = new Article("Whiskey Jacky Danielson","beautiful with cola");
         shopList[2] = new DiscountedProduct("gin", 450, 11);
         artList[2] = new Article("Gin Hendroy's","very strong");
@@ -49,17 +50,19 @@ public class Main {
         myBasket.getList();
         System.out.println(myBasket.inBasketEnabled("beer"));
 
+        System.out.println(myBasket.deleteProducts("moonshine"));
+        myBasket.getList();
+
+        System.out.println(myBasket.deleteProducts("gin"));
+        myBasket.getList();
+
         myBasket.clear();
         myBasket.getList();
 
-        Searchable[] searchables = new Searchable[shopList.length + artList.length];
-        for (int i = 0; i < shopList.length; i++) {
-            searchables[i * 2] = shopList[i];
-            searchables[i * 2 + 1] = artList[i];
-        }
+        List<Searchable> searchables = new ArrayList<>();
+        searchables.addAll(Arrays.asList(shopList));
+        searchables.addAll(Arrays.asList(artList));
         SearchEngine se = new SearchEngine(searchables);
-
-        System.out.println(se.search("beer"));
         try {
             System.out.println(se.search("moonshine"));
         } catch (BestResultNotFound e) {
