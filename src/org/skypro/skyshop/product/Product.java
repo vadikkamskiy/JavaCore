@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-
+import java.util.Objects;
 
 public abstract class Product implements Searchable{
     private final String name;
@@ -26,6 +26,20 @@ public abstract class Product implements Searchable{
     private void checkNPE(String n) throws IllegalAccessException{
         if(n==null || n.isBlank()){
             throw new IllegalAccessException("empty name variable");
+        }
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hashCode(name);
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if(obj instanceof Product){
+            Product other = (Product) obj;
+            return Objects.equals(other.name, obj);
+        }else{
+            return false;
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.skypro.skyshop.basket;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,7 +14,7 @@ public class Basket {
     private static int count = 0;
     private static int specialCount = 0;
 
-    Map<String,List<Product>> myBasket = new TreeMap<>();
+    private Map<String,List<Product>> myBasket = new TreeMap<>();
 
     public void addProduct(Product p){
         myBasket.computeIfAbsent(p.getName(), k-> new ArrayList<>()).add(p);
@@ -58,17 +59,19 @@ public class Basket {
 
     public List<Product> deleteProducts(String name){
         List<Product> deleted = new LinkedList<>();
-        Iterator<Product> deletedIterator = myBasket.iterator();
-        while (deletedIterator.hasNext()){
-            Product nextProduct = deletedIterator.next();
-            if(nextProduct.getName().equals(name)){
-                deletedIterator.remove();
-                deleted.add(nextProduct);
+        if(myBasket.containsKey(name)){
+            deleted.addAll(myBasket.get(name));
+            int sumRemoved = 0;
+            for (Product product : deleted) {
+                sumRemoved += product.getPrice();
             }
+            sumOfBasket -= sumRemoved;
+            myBasket.remove(name);
         }
         if(deleted.isEmpty()){
             System.out.println("Basket not contains " + name);
         }
         return deleted;
     }
+
 }
