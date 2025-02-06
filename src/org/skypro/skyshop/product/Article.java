@@ -42,7 +42,7 @@ public class Article implements Searchable{
         if(this == obj) return true;
         if(obj instanceof Product){
             Product other = (Product) obj;
-            return nameOfArticle.hashCode() == other.hashCode();
+            return nameOfArticle.hashCode() == other.hashCode() && nameOfArticle.equals(other.getName());
         }else{
             return false;
         }
