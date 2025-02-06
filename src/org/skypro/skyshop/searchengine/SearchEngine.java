@@ -1,30 +1,46 @@
 package org.skypro.skyshop.searchengine;
 
-import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
+import java.util.Set;
+import java.util.TreeSet;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
-
 import org.skypro.skyshop.product.Searchable;
 
 public class SearchEngine {
-    List<Searchable> searchables;
+    Set<Searchable> searchables = new HashSet<>();
     public SearchEngine(List<Searchable> p){
-        searchables = p;
+        searchables.addAll(p);
     }
 
-    public Map<String,List<Searchable>> search(String j) throws BestResultNotFound{
-        Map<String,List<Searchable>> output = new TreeMap<>();
+    public Set<Searchable> search(String j) throws BestResultNotFound{
+        Comparator<Searchable> comparator = (s1, s2) -> {
+            int lengthCompare = Integer.compare(s1.getName().length(), s2.getName().length());
+            if (lengthCompare != 0) {
+                return lengthCompare;
+            } else {
+                return s1.compareTo(s2); 
+            }
+        };
+        Set<Searchable> output = new TreeSet<>(comparator);
        for (Searchable s : searchables) {
         if (s.getSearchTerm().contains(j)) {
-            output.computeIfAbsent(s.getName(), k-> new ArrayList<>()).add(s);
+            output.add(s);
         }
        }
        return output;
     }
     public void add(Searchable r){
         searchables.add(r);
+    }
+
+    @Override
+    public String toString(){
+        String output = "";
+        for (Searchable s : searchables) {
+            output += s.getName() + '\n';
+        }
+        return output;
     }
 }

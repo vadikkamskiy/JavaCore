@@ -37,7 +37,7 @@ public abstract class Product implements Searchable{
         if(this == obj) return true;
         if(obj instanceof Product){
             Product other = (Product) obj;
-            return Objects.equals(other.name, obj);
+            return this.hashCode() == other.hashCode() && this.name.equals(other.getName());
         }else{
             return false;
         }
