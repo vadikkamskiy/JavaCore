@@ -28,17 +28,17 @@ public class Main {
         shopList[2] = new DiscountedProduct("gin", 450, 11);
         artList[2] = new Article("Gin Hendroy's","very strong");
         shopList[3] = new SampleProduct("wine", 670);
-        artList[3] = new Article("Wine Divine","vine, we miss");
+        artList[3] = new Article("wine Divine","vine, we miss");
         shopList[4] = new DiscountedProduct("beer", 790, 12);
-        artList[4] = new Article("Beer hellniken", "damn good");
+        artList[4] = new Article("beer hellniken", "damn good");
         shopList[5] = new SampleProduct("wine", 940);
         artList[5] = new Article("Tuchi","Cabernet");
         shopList[6] = new FixPriceProduct("vodka");
-        artList[6] = new Article("Vodka absoluse", "Luse everything");
+        artList[6] = new Article("vodka absoluse", "Luse everything");
         shopList[7] = new SampleProduct("wine", 1500);
-        artList[7] = new Article("Wine mother-in-law's cellar","taste of childhood");
+        artList[7] = new Article("wine mother-in-law's cellar","taste of childhood");
         shopList[8] = new DiscountedProduct("vodka", 900, 5);
-        artList[8] = new Article("Vodka nemiron", "turn it up");
+        artList[8] = new Article("vodka nemiron", "turn it up");
         System.out.println("Shop \n");
         for (Searchable c : shopList){
             System.out.println(c);
@@ -64,11 +64,11 @@ public class Main {
         searchables.addAll(Arrays.asList(artList));
         SearchEngine se = new SearchEngine(searchables);
         try {
-            System.out.println(se.search("moonshine"));
+            System.out.println(se.search("beer"));
         } catch (BestResultNotFound e) {
             System.out.println(e);
         }
         Product l = new FixPriceProduct("whiskeyyyyy");
         se.add(l);
-        }
+    }
 }
