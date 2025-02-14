@@ -23,8 +23,5 @@ public class FixPriceProduct extends Product {
         output+=this.getPrice();
         return output;
     }
-    @Override
-    public String name() {
-        return this.getName();
-    }
+    
 }

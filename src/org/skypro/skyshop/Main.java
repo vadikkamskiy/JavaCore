@@ -12,7 +12,7 @@ import org.skypro.skyshop.searchengine.SearchEngine;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws Exception {
-        Basket myBasket = new Basket();
+        Basket basket = new Basket();
         Product[] shopList = new Product[9];
         Article[] artList = new Article[9];
         try {
@@ -43,28 +43,28 @@ public class Main {
         for (Searchable c : shopList){
             System.out.println(c);
         }
-        myBasket.getList();
+        basket.getList();
         for(int i = 0;i<7;i++ ){
-            myBasket.addProduct(shopList[i]);
+            basket.addProduct(shopList[i]);
         }
-        myBasket.getList();
-        System.out.println(myBasket.inBasketEnabled("beer"));
+        basket.getList();
+        System.out.println(basket.inBasketEnabled("beer"));
 
-        System.out.println(myBasket.deleteProducts("moonshine"));
-        myBasket.getList();
+        System.out.println(basket.deleteProducts("moonshine"));
+        basket.getList();
 
-        System.out.println(myBasket.deleteProducts("gin"));
-        myBasket.getList();
+        System.out.println("deleted products : " + basket.deleteProducts("beer"));
+        basket.getList();
 
-        myBasket.clear();
-        myBasket.getList();
+        basket.delete();
+        basket.getList();
 
         List<Searchable> searchables = new ArrayList<>();
         searchables.addAll(Arrays.asList(shopList));
         searchables.addAll(Arrays.asList(artList));
         SearchEngine se = new SearchEngine(searchables);
         try {
-            System.out.println(se.search("beer"));
+            System.out.println(se.search("vodka"));
         } catch (BestResultNotFound e) {
             System.out.println(e);
         }
